@@ -1,14 +1,12 @@
 # Pytest tutorial
 
-
+<br>
 
 ## 1. 설치
 
 ```bash
 $ pip install pytest
 ```
-
-
 
 ```python
 >>> import pytest
@@ -18,7 +16,7 @@ $ pip install pytest
 
 글 쓰는 시점 기준, `5.4.3` 버전 사용.
 
-
+<br>
 
 ## 2. 기본 사용법
 
@@ -55,7 +53,7 @@ class TestFunc:
         assert func() == "hello pytest" 
 ```
 
-
+<br>
 
 ### pytest 실행
 
@@ -71,9 +69,9 @@ test_something.py .       [100%]
 
 - `.` 는 패스. `F` 은 실패. `E` 는 예외로 표시 된다.
 
+<br>
 
-
-### 예외 테스트
+## 3. 예외 테스트
 
 예외(Exception) 을 잘 raise 하는지는 다음과 같이 `pytest.raises` 로 확인해볼 수 있다.
 
@@ -109,9 +107,9 @@ test_func_raise.py .       [100%]
 ====== 1 passed in 0.01s =======
 ```
 
+<br>
 
-
-### 4. assert 주의 사항
+## 4. assert 주의 사항
 
 다음 코드를 작성해보자.
 
@@ -156,8 +154,10 @@ test_func_equal.py:7: ValueError
  `func_equal() == np.array([1, 2, 3, 4, 5])` 는 `[True, True, True, True, True]` 를 반환한다.  
 `bool` 타입이 아니므로, `ValueError` 를 뱉고 있는 것이다.
 
-따라서, `assert` 안에 `==` 로 두 객체를 비교 시, `__eq__` 가 `bool` 타입을 반환하는지 고려해야 한다.
+**따라서, `assert` 안에 `==` 로 두 객체를 비교 시, `__eq__` 가 `bool` 타입을 반환하는지 고려해야 한다.**
 
-> `numpy.array` 비교 관련 이슈가 깃허브에 이미 올라와 있다.
+<br>
+
+> `numpy.array` 비교 관련 이슈가 깃허브에 이미 올라와 있다.  
 > [여기](https://github.com/pytest-dev/pytest/issues/5347)를 클릭하면 확인 할 수 있다. (아직까지 깔끔하게 해결되진 않은 듯)
 
