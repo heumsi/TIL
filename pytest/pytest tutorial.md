@@ -160,4 +160,6 @@ test_func_equal.py:7: ValueError
 
 > `numpy.array` 비교 관련 이슈가 깃허브에 이미 올라와 있다.  
 > [여기](https://github.com/pytest-dev/pytest/issues/5347)를 클릭하면 확인 할 수 있다. (아직까지 깔끔하게 해결되진 않은 듯)
+>
+> 나같은 경우 `numpy.array.tolist()` 메서드로 `list` 변환한 뒤 비교 함...
 
