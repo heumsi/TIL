@@ -102,6 +102,17 @@ plugins=(
 ...
 ```
 
+그리고 나의 경우 `oh-my-zsh` 를 쓰기 때문에 다음도 추가.  
+다른 셸을 쓰는 사람은 [이 링크](https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh) 참고.
+
+```
+# Zsh (Oh-My-Zsh)
+mkdir $ZSH/plugins/poetry
+poetry completions zsh > $ZSH/plugins/poetry/_poetry
+```
+
+완료했으면 `source ~/.zshrc` 로 셀을 재실행 하자.
+
 다음 명령어로 poetry 를 시작할 수 있다.
 
 ```bash
