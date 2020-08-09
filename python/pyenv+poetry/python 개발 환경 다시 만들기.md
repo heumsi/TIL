@@ -139,3 +139,17 @@ poetry show --no-dev --tree
 poetry export -f requirements.txt > requirements.txt
 ```
 
+다음 명령어로 poetry 가상 환경을 activate/deactivate 할 수 있다.
+
+```bash
+poetry shell  #  activate (가상 환경 기반의 shell 실행)
+exit  # decativate (가상 환경 기반의 shell 종료)
+```
+
+다음 명령어로 `pyproject.toml` 에 명시된 패키지들을 설치할 수 있다.
+
+```
+poetry install
+```
+
+옵션으로 `--no-interaction`, `--no-dev`, `--no-ansi` 등을 줄 수 있음.
