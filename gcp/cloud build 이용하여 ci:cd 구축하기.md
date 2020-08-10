@@ -105,6 +105,8 @@ All done! ✨ 🍰 ✨
 이 과정을 `cloudbuild-ci.yaml` 이라는 파일에 담자.
 
 ```yaml
+# cloudbuild-ci.yaml
+
 steps:
   - name: docker.io/library/python:3.7
     id: Check code style
@@ -173,7 +175,7 @@ steps:
 이제 `.yaml` 을 기술해보자. 이름은 `cloudbuild-cd.yaml` 로 하였다.
 
 ```yaml
-# cloudbuild.yaml
+# cloudbuild-cd.yaml
 
 steps:
   - name: "gcr.io/cloud-builders/docker"
@@ -306,6 +308,8 @@ $ git checkout -b test
 ```
 
 ```python
+# app.py
+
 from flask import Flask
 
 app = Flask(__name__)
