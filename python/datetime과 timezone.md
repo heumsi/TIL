@@ -82,14 +82,27 @@ datetime.datetime(2020, 12, 31, 0, 32, tzinfo=<DstTzInfo 'Asia/Seoul' KST+9:00:0
 
 <br>
 
-### 결론
+### 결론 및 사용 가이드
 
 `pytz.timezone` 을 안쓰고, 표준 모듈인 `datetime.timezone` 을 쓴다.
 
 ```python
->>> import datetime
->>> KST = datetime.timezone(datetime.timedelta(hours=9))
+import datetime
 
->>> kst_now = datetime.datetime.now(KST) 
+# datetime.timezone 으로 timezone 을 정의하자.
+KST = datetime.timezone(datetime.timedelta(hours=9))
+UTC = datetime.timezone(datetime.timedelta(hours=0))
+
+# datetime 객체를 만들 때는 항상 timezone 을 주입해주자.
+kst_now = datetime.datetime.now(KST) 
+
+# timestamp 에서 KST 시간대의 datetime 객체를 만드는 방법은 다음과 같다.
+datetime.datetime.fromtimestamp(1596330000, tz=KST)
+
+# naive datetime 에 timezone 을 주입해주는 방법은 다음과 같다.
+# 내가 만든 datetime 이 아닌 경우, (이미 naive 로 만들어 진 경우) 타임 존만 주입해줘야 할 때 유용하다.
+datetime.datetime.now().replace(tzinfo=KST)
+
+# aware datetime 을 특정 타임존에 맞게 가져오는 방법은 다음과 같다.
+datetime.datetime.now(UTC).astimezone(KST)
 ```
-
