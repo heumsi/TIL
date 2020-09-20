@@ -1,44 +1,4 @@
-## 큐브 시스템 컴포넌트
-
-### 큐브 API 서버
-
-- 쿠버네티스 시스템 컴포넌트는 오직 API 서버와 통신
-- 컴포넌트끼리 직접 통신 X
-- 때문에 etcd와 통신하는 유일한 컴포넌트 API 서버
-- RESTful API를 통해 클러스터 상태를 쿼리, 수정할 수 있는 기능 제공
-- API 서버의 구체적인 역할
-    - 인증 플러그인을 사용한 클라이언트 인증
-    - 권한 승인 플러그인을 통한 클라이언트 인증
-    - 승인 제어 플러그인을 통해 요청 받은 리소스를 확인/수정
-    - 리소스 검증 및 영구 저장
-
-
-
-### 큐브 컨트롤러 매니저
-
-- 컨트롤러에는 다양한 컨트롤러가 존재
-    - ex. 레플리케이션 매니저, 레플리카 셋/ 데몬셋/ 잡 컨트롤러 등등
-    - 이 컨트롤러는 API에 의해 받아진 요청을 처리하는 역할 
-
-
-
-### 큐브 스케쥴러
-
-- 요청 받은 리소스를 어느 노드에 실행할지 결정하는 역할 
-- 현재 노드의 상태를 점검하고 최상의 노드를 찾아 배치
-- 다수의 포드를 배치하는 경우에는 라운드 로빈을 사용하여 분산
-
-
-
-### etcd
-
-- multi key-value 데이터베이스
-- 쿠버네티스 구성에 필요한 데이터들을 담고 있음.
-    - ex. `/registry/clusterrolebindings/cluster-admin`
-
-
-
-## Pod
+# Pod
 
 - 쿠버네티스에서는 컨테이너가 아닌 포드가 기본 단위
 - 노드는 포드를 담고, 포드는 컨테이너를 담음.
@@ -252,7 +212,7 @@ startupProbe:  # 시작할 때까지 검사를 수행
     - App: 애플리케이션 구성요소, 마이크로 서비스 유형 지정
     - Rel: 애플리케이션의 버전 지정
 
-![img](images/03fig07_alt.jpg)
+![img](/Users/heumsi/Documents/TIL/kubernetes/인프런 - DevOps를 위한 쿠버네티스 마스터/images/03fig07_alt.jpg)
 
 *출처: https://livebook.manning.com/book/kubernetes-in-action/chapter-3/134*
 
@@ -304,19 +264,3 @@ $ kubectl get pod --show-labels -l 'env!=test,rel=beta'
 > Pod의 Label 전략은 다음 아티클을 참고하자.  
 > [9 Best Practices and Examples for Working with Kubernetes Labels](https://www.replex.io/blog/9-best-practices-and-examples-for-working-with-kubernetes-labels)
 
-
-
-## ReplicaSet
-
-현재 쿠버네티스 버전에서는 레플리케이션 컨트롤러가 사라짐. (레플리카 셋으로 통합됨.) 
-
-
-
-### 레플리케이션 컨트롤러
-
-- 포드가 항상 실행되도록 유지하는 쿠버네티스 리소스
-- 노드가 클러스터에서 사라지는 경우, 해당 포드를 감지하고 대체 포드 생성
-- 실행 중인 포드의 목록을 지속적으로 모니터링하고, 실제 포드 수가 원하는 수와 항상 일치하는지 확인
-- Pod이 장애가 발생한 경우, 5분 뒤 해당 Pod을 내리고 새로운 Pod 생성
-    - 5분은 기본 설정 값임 (수정가능).
-    - 일시적 장애일 수 있기 때문에 5분이라는 유예 시간을 주는 것. (5분이 아니라 즉각즉각 생성하면 Pod 과다 생성할 수 있음. 이를 방지하는 것)
